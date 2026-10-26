@@ -16,7 +16,7 @@ export interface UploadMediaOptions {
 }
 
 /**
- * Walk the rendered DOM's `<img>`/`<video>` elements, queue each local asset
+ * Walk the rendered DOM's `<img>`/`<video>`/`<audio>` elements, queue each local asset
  * for upload, and resolve to the server's check-files result.
  *
  * Mutates `contentDom` in two ways:
@@ -35,7 +35,7 @@ export async function uploadMedia (
 ): Promise<CheckFilesResult> {
   status.setStatus('Processing attachments...')
 
-  for (const el of contentDom.querySelectorAll('img,video')) {
+  for (const el of contentDom.querySelectorAll('img,video,audio')) {
     const src = el.getAttribute('src')
     if (!src) continue
 
